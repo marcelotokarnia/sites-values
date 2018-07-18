@@ -1,0 +1,35 @@
+{
+  "name": "sites",
+  "version": "1.0.0",
+  "description": "Sites Values",
+  "main": "index.ts",
+  "scripts": {
+    "build": "webpack --mode=production",
+    "watch": "webpack --watch --mode=development"
+  },
+  "keywords": [
+    "Django",
+    "Vue",
+    "Typescript"
+  ],
+  "author": "Marcelo Tokarnia",
+  "license": "ISC",
+  "devDependencies": {
+    "axios": "^0.18.0",
+    "babel-loader": "^7.1.4",
+    "bootstrap": "^4.1.2",
+    "copy-webpack-plugin": "^4.5.1",
+    "css-loader": "^0.28.11",
+    "ignore-loader": "^0.1.2",
+    "sass-loader": "^7.0.3",
+    "ts-loader": "^4.4.1",
+    "typescript": "^2.9.2",
+    "vue": "^2.5.16",
+    "vue-loader": "^15.2.4",
+    "vue-router": "^3.0.1",
+    "vue-style-loader": "^4.1.0",
+    "vue-template-compiler": "^2.5.16",
+    "webpack": "^4.12.1",
+    "webpack-cli": "^3.0.8"
+  }
+}

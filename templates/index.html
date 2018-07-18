@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+{% load static from staticfiles %}
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="/static/favicon.png">
+
+    <title>Sites Values</title>
+  </head>
+
+  <body>
+    <div id="app">
+
+    <script>var CSRFTOKEN = "{{csrf_token}}"; </script>
+    <script src="{% static "build.js" %}"></script>
+  </body>
+</html>

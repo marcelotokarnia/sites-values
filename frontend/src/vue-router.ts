@@ -18,14 +18,19 @@ const route = (path: string, name: string, component: typeof Vue): IRoute => ({
   path,
 })
 
+const average = 'average', sum = 'sum', sites = 'sites', site = 'site', main = 'main'
+
 const router = new VueRouter({
   mode: 'history',
   routes: [
-    route('/sites/:id', 'site', Site),
-    route('/summary', 'summary', Summary),
-    route('/sites', 'main', Main),
-    route('/', 'main', Main),
+    route('/sites/:id', site, Site),
+    route('/summary-average', average, Summary),
+    route('/summary', sum, Summary),
+    route('/sites', sites, Main),
+    route('/', main, Main),
   ],
 })
 
 export default router
+
+export { average, main, site, sites, sum }

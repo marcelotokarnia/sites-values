@@ -1,12 +1,13 @@
 from django.db import models
+from utils.model_utils import BaseModel
 
-class Site(models.Model):
-    name = models.CharField(max_length=1024, primary_key=True)
+class Site(BaseModel):
+    name = models.CharField(max_length=1024, unique=True)
 
     def __str__(self):
-        return '%s: %s' % (self.pk, self.name)
+        return self.name
 
-class Value(models.Model):
+class Value(BaseModel):
     site = models.ForeignKey(Site, related_name="values", on_delete=models.CASCADE)
     date = models.DateField()
     a = models.FloatField()

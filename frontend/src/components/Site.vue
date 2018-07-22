@@ -9,9 +9,9 @@
 
       <tbody v-if="site">
         <tr v-for="value in site.values" :key="value.id">
-          <td v-html="value.date" />
-          <td v-html="value.a"/>
-          <td v-html="value.b"/>
+          <td v-html="parseDate(value.date)" />
+          <td v-html="value.a.toFixed(2)"/>
+          <td v-html="value.b.toFixed(2)"/>
         </tr>
       </tbody>
     </table>
@@ -37,6 +37,7 @@
 
   import Vue from 'vue'
   import axios from 'axios'
+  const moment = require('moment')
   import {AxiosPromise} from 'axios'
   export default Vue.extend({
     created() {
@@ -49,6 +50,9 @@
       }
     },
     methods: {
+      parseDate(dt: number) {
+        return moment(dt).format("MMM[.] D[,] YYYY")
+      },
       fetchData() {
         this.loading = true
         axios(`/api/sites/${this.$route.params.id}/?format=json&detailed`)

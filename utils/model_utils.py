@@ -2,6 +2,10 @@ from django.db import models
 from utils.date_utils import date2milis
 
 
+def mean(numbers):
+    return float(sum(numbers)) / max(len(numbers), 1)
+
+
 class BaseModel(models.Model):
     class Meta:
         abstract = True

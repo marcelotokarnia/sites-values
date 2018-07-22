@@ -10,10 +10,11 @@ sites = [
         {'pk': 3, 'date': date(2015, 2, 10), 'a': 20, 'b': 80},
     ]},
     {'name': 'ABC Site', 'pk': 2, 'values': [
-
+        {'pk': 4, 'date': date(2015, 2, 3), 'a': 5, 'b': 15},
     ]},
     {'name': 'XYZ Site', 'pk': 3, 'values': [
-
+        {'pk': 5, 'date': date(2015, 2, 15), 'a': 5, 'b': 15},
+        {'pk': 6, 'date': date(2015, 2, 28), 'a': 5, 'b': 15},
     ]}
 ]
 

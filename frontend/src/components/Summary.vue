@@ -22,8 +22,8 @@
       <tbody v-if="sites">
         <tr v-for="site in sites" :key="site.id">
           <td v-html="site.name" />
-          <td v-html="site[mode].a" />
-          <td v-html="site[mode].b" />
+          <td v-html="site[mode].a.toFixed(2)" />
+          <td v-html="site[mode].b.toFixed(2)" />
         </tr>
       </tbody>
     </table>

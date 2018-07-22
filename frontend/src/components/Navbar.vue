@@ -31,3 +31,9 @@
     }
   })
 </script>
+
+<style scoped lang="stylus">
+  nav
+    margin-bottom 20px
+    border 1px solid rgb(231, 231, 231)
+</style>

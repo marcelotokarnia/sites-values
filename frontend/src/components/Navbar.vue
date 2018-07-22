@@ -21,9 +21,9 @@
     data() {
       const route = this.$route.name
       return {
-        active: [average, sum].includes(route) ?
+        active: route === average || route === sum ?
           'summary' :
-          [main, sites, site].includes(route) ?
+          route === main || route === sites || route === site ?
             'sites' :
             '',
         route

@@ -19,7 +19,7 @@
         </tr>
       </thead>
 
-      <tbody>
+      <tbody v-if="sites">
         <tr v-for="site in sites" :key="site.id">
           <td v-html="site.name" />
           <td v-html="site[mode].a" />
@@ -31,7 +31,21 @@
 </template>
 
 <script lang="ts">
+  interface IValueSum {
+    a: number
+    b: number
+  }
+  interface ISiteSum {
+    id: number
+    name: string
+    sum?: IValueSum
+    average?: IValueSum
+  }
   interface IModel {
+    average: string
+    sum: string
+    mode?: string
+    sites?: ISiteSum[]
   }
 
   import Vue from 'vue'
@@ -39,19 +53,33 @@
   import { average, sum } from '@src/vue-router'
   import {AxiosPromise} from 'axios'
   export default Vue.extend({
+    created() {
+      this.fetchData()
+    },
     data(): IModel {
       return {
         average,
         mode: this.$route.name,
-        sites: [
-          {id: 1, name: 'Demo Site', sum: {a: 52, b: 196}, average: {a: 17.33, b: 65.33}},
-          {id: 2, name: 'ABC Site', sum: {a: 5, b: 15}, average: {a: 5, b: 15}},
-          {id: 3, name: 'XYZ Site', sum: {a: 10, b: 30}, average: {a: 5, b: 15}}
-        ],
+        sites: undefined,
         sum,
       }
     },
+    watch: {
+      '$route': 'fetchData'
+    },
     methods: {
+      fetchData() {
+        this.sites = undefined
+        if (this.$route.name === sum) {
+          axios('api/sites-summary').then(({data}) => {
+            this.sites = data
+          })
+        } else {
+          axios('api/sites-summary-average').then(({data}) => {
+            this.sites = data
+          })
+        }
+      }
     },
     name: 'Summary',
   })

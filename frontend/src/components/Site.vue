@@ -1,13 +1,13 @@
 <template>
   <div class="container">
-    <h1>Site Details - {{site.name}}</h1>
-    <table class="table">
+    <h1>Site Details - {{loading ? '' : site.name}}</h1>
+    <table class="table" >
       <thead>
         <tr><td><strong>Date</strong></td>
         <td><strong>A Value</strong></td><td><strong>B Value</strong></td></tr>
       </thead>
 
-      <tbody>
+      <tbody v-if="site">
         <tr v-for="value in site.values" :key="value.id">
           <td v-html="value.date" />
           <td v-html="value.a"/>
@@ -19,23 +19,51 @@
 </template>
 
 <script lang="ts">
+  interface IValue {
+    a: number
+    b: number
+    date: number
+    id: number
+  }
+
   interface IModel {
+    site?: {
+      id: number
+      name: string
+      values: IValue[]
+    }
+    loading: boolean
   }
 
   import Vue from 'vue'
   import axios from 'axios'
   import {AxiosPromise} from 'axios'
   export default Vue.extend({
+    created() {
+      this.fetchData()
+    },
     data(): IModel {
       return {
-        site: {id: 1, name: 'Demo Site', values: [
-          {id: 1, date: new Date(2015, 1, 1), a: 12, b: 16},
-          {id: 2, date: new Date(2015, 1, 3), a: 20, b: 100},
-          {id: 3, date: new Date(2015, 1, 10), a: 20, b: 80},
-        ]},
+        site: undefined,
+        loading: false,
       }
     },
+    methods: {
+      fetchData() {
+        this.loading = true
+        axios(`/api/sites/${this.$route.params.id}/?format=json&detailed`)
+          .then(({data}) => {
+            this.loading = false
+            this.site = data
+          }).catch(()=> {
+            this.loading = false
+          })
+      },
+    },
     name: 'Site',
+    watch: {
+      '$route': 'fetchData'
+    },
   })
 </script>
 

@@ -83,13 +83,15 @@ Then switch back to your user:
 
 `su`
 
-### F. Migrate database schema
+### F. Migrate database schema and populate database
 
 Back at root folder
 
 `cd ..`
 
 `python manage.py migrate`
+
+`python manage.py populate_db`
 
 
 ### G. Raise your Django local server
